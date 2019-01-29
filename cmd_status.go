@@ -24,13 +24,13 @@ var CmdStatus = &Cmd{
 		if loadedRC != nil {
 			formatRC("Loaded", loadedRC)
 		} else {
-			fmt.Println("No .envrc loaded")
+			fmt.Printf("No %s loaded\n", config.RCFile)
 		}
 
 		if foundRC != nil {
 			formatRC("Found", foundRC)
 		} else {
-			fmt.Println("No .envrc found")
+			fmt.Printf("No %s loaded\n", config.RCFile)
 		}
 
 		return nil

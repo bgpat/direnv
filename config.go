@@ -17,6 +17,7 @@ type Config struct {
 	SelfPath        string
 	BashPath        string
 	RCDir           string
+	RCFile          string
 	TomlPath        string
 	DisableStdin    bool
 	WhitelistPrefix []string
@@ -27,6 +28,7 @@ type tomlConfig struct {
 	Whitelist    whitelist `toml:"whitelist"`
 	BashPath     string    `toml:"bash_path"`
 	DisableStdin bool      `toml:"disable_stdin"`
+	RCFile       string    `toml:"rc_file"`
 }
 
 type whitelist struct {
@@ -79,13 +81,18 @@ func LoadConfig(env Env) (config *Config, err error) {
 			return
 		}
 
+		config.RCFile = tomlConf.RCFile
+		if config.RCFile == "" {
+			config.RCFile = ".envrc"
+		}
+
 		for _, prefix := range tomlConf.Whitelist.Prefix {
 			config.WhitelistPrefix = append(config.WhitelistPrefix, prefix)
 		}
 
 		for _, path := range tomlConf.Whitelist.Exact {
-			if !strings.HasSuffix(path, "/.envrc") {
-				path = filepath.Join(path, ".envrc")
+			if !strings.HasSuffix(path, "/"+config.RCFile) {
+				path = filepath.Join(path, config.RCFile)
 			}
 
 			config.WhitelistExact[path] = true
@@ -118,7 +125,7 @@ func (self *Config) LoadedRC() *RC {
 		log_debug("RCDir is blank - loadedRC is nil")
 		return nil
 	}
-	rcPath := filepath.Join(self.RCDir, ".envrc")
+	rcPath := filepath.Join(self.RCDir, self.RCFile)
 
 	times_string := self.Env[DIRENV_WATCHES]
 

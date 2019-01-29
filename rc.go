@@ -20,7 +20,7 @@ type RC struct {
 }
 
 func FindRC(wd string, config *Config) *RC {
-	rcPath := findUp(wd, ".envrc")
+	rcPath := findUp(wd, config.RCFile)
 	if rcPath == "" {
 		return nil
 	}

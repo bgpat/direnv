@@ -38,11 +38,11 @@ var CmdEdit = &Cmd{
 			rcPath = args[1]
 			fi, _ := os.Stat(rcPath)
 			if fi != nil && fi.IsDir() {
-				rcPath = filepath.Join(rcPath, ".envrc")
+				rcPath = filepath.Join(rcPath, config.RCFile)
 			}
 		} else {
 			if foundRC == nil {
-				return fmt.Errorf(".envrc not found. Use `direnv edit .` to create a new envrc in the current directory.")
+				return fmt.Errorf("%s not found. Use `direnv edit .` to create a new envrc in the current directory.", config.RCFile)
 			}
 			rcPath = foundRC.path
 		}

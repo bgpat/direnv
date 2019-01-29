@@ -15,7 +15,7 @@ var CmdReload = &Cmd{
 
 		foundRC := config.FindRC()
 		if foundRC == nil {
-			return fmt.Errorf(".envrc not found")
+			return fmt.Errorf("%s not found", config.RCFile)
 		}
 
 		return foundRC.Touch()
