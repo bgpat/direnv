@@ -57,6 +57,7 @@ direnv is packaged for a variety of systems:
 * [MacPorts](https://www.macports.org/)
 * [Ubuntu](https://packages.ubuntu.com/search?keywords=direnv&searchon=names&suite=all&section=all)
 * [GNU Guix](https://www.gnu.org/software/guix/)
+* [Snap](https://snapcraft.io/direnv)
 
 See also:
 
@@ -205,7 +206,7 @@ If you add the following line in "/a/b/.envrc", you can load both of the
 ```sh
 source_env ..
 ```
-In the general case `source_up` will load any .envrc higher up in the folder structure. This allows you to truly enable arbitrary heirarchical stuctures of `.envrc` usage.
+In the general case `source_up` will load any .envrc higher up in the folder structure. This allows you to truly enable arbitrary hierarchical stuctures of `.envrc` usage.
 
 ```sh
 source_up
@@ -213,7 +214,7 @@ source_up
 
 ## Common things people don't know
 
-Based on GitHub issues interractions, here are the top things that have been confusing for users:
+Based on GitHub issues interactions, here are the top things that have been confusing for users:
 
 1. direnv has a standard library of functions, a collection of utilities that I found useful to have and accumulated over the years. If you know how to read bash, you can find it here: https://github.com/direnv/direnv/blob/master/stdlib.sh
 
